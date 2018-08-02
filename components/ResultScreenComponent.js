@@ -15,17 +15,48 @@ function OutputScreen(props){
 export default class ResultScreenComponent extends React.Component {
     constructor(){
         super();
+        this.state = {
+            expression: '0'
+        }
+        this.onKeyPress = this.onKeyPress.bind(this);
+        this.onBackspacePress = this.onBackspacePress.bind(this);
+        this.onComputePress = this.onComputePress.bind(this);
     }
 
-    onKeyPress(){
+    onKeyPress(newKey){
         console.log("Key Pressed");
+        this.setState((prev)=>({
+            expression: prev.expression + newKey
+        }));
+    }
+
+    onBackspacePress(){
+        console.log("Backspace Pressed");
+        this.setState((prev)=>({
+            expression: prev.expression.length <=1 ? '0' : prev.expression.slice(0,-1)
+        }));
+    }
+    
+    onComputePress(){
+        console.log("Compute Pressed");
+        debugger
+        this.setState((prev)=>({
+            expression: eval(prev.expression)
+        }));
+    }
+
+    onClearPress(){
+        console.log("Clear Pressed");
+        this.setState((prev)=>({
+            expression: '0'
+        }));
     }
     
     render(){
         let buttons = [];
         return (
             <div>
-                <OutputScreen />
+                <OutputScreen expression={this.state.expression}/>
                 <ButtonsComponent onKeyPress={this.onKeyPress} text="1" />
                 <ButtonsComponent onKeyPress={this.onKeyPress} text="2" />
                 <ButtonsComponent onKeyPress={this.onKeyPress} text="3" />
