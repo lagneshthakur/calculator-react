@@ -1,4 +1,48 @@
-import { Component } from "react";
-export class ResultScreenComponent extends React.Component {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ButtonsComponent from './ButtonsComponent'
+import ComputeComponent from './ComputeComponent'
+import BackspaceComponent from './BackspaceComponent'
+import MultiplicationComponent from './arithmetic/MultiplicationComponent'
+import DivisionComponent from './arithmetic/DivisionComponent'
+import AdditionComponent from './arithmetic/AdditionComponent'
+import SubtractionComponent from './arithmetic/SubtractionComponent'
+// For the Output Screen
+function OutputScreen(props){
+    return (<input type="text" value={props.expression} disabled="true" />);
+}
 
+export default class ResultScreenComponent extends React.Component {
+    constructor(){
+        super();
+    }
+
+    onKeyPress(){
+        console.log("Key Pressed");
+    }
+    
+    render(){
+        let buttons = [];
+        return (
+            <div>
+                <OutputScreen />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="1" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="2" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="3" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="4" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="5" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="6" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="7" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="8" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="9" />
+                <ButtonsComponent onKeyPress={this.onKeyPress} text="0" />
+                <MultiplicationComponent onKeyPress={this.onKeyPress} />
+                <DivisionComponent onKeyPress={this.onKeyPress} />
+                <AdditionComponent onKeyPress={this.onKeyPress} />
+                <SubtractionComponent onKeyPress={this.onKeyPress} />
+                <BackspaceComponent onBackspacePress={this.onBackspacePress} />
+                <ComputeComponent onComputePress={this.onComputePress} />
+            </div>
+        );
+    } 
 }

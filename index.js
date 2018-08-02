@@ -9,4 +9,4 @@ class HelloMessage extends React.Component {
 }
 
 var mountNode = document.getElementById("app");
-ReactDOM.render(<HelloMessage name="Lagnesh" />, mountNode);
+ReactDOM.render(<ResultScreenComponent />, mountNode);
