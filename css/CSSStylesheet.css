@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'digital-7';
+    src: URL('./digital-7.ttf') format('ttf');
+}
+
+.btn-grey{
+    font-size: 40px;
+    font-weight: 400;
+    background-color: white;
+    border-radius: 0;
+    border-color: #c1203f;
+}
+
+.btn-grey:hover{
+    background-color: #f2274f;
+    border-color: #670912;
+    zoom: 101%;
+    position: absolute;
+}
+
+.btn-red{
+    font-size: 40px;
+    font-weight: 400;
+    border-radius: 0;
+    background-color: #f2274f;
+    border-color: #c1203f;
+}
+
+.btn-red:hover{
+    background-color: white;
+    border-color: #670912;
+    zoom: 101%;
+    position: absolute;
+}
+
+.no-x-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}

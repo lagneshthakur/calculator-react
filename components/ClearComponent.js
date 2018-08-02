@@ -2,5 +2,5 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default function ClearComponent(props) {
-    return (<button onClick={()=>{props.onClearPress()}}>C</button>)
+    return (<button className="btn btn-block btn-outline-light text-dark btn-grey" onClick={()=>{props.onClearPress()}}>C</button>)
 }

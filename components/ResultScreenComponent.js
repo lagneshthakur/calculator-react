@@ -10,7 +10,7 @@ import AdditionComponent from './arithmetic/AdditionComponent'
 import SubtractionComponent from './arithmetic/SubtractionComponent'
 // For the Output Screen
 function OutputScreen(props){
-    return (<input type="text" value={props.expression} disabled="true" />);
+    return (<input style={{borderRadius:0, fontSize: '40px', fontWeight: 400}} className="form-control" type="text" value={props.expression} disabled="true" />);
 }
 
 export default class ResultScreenComponent extends React.Component {
@@ -28,7 +28,7 @@ export default class ResultScreenComponent extends React.Component {
     onKeyPress(newKey){
         console.log("Key Pressed");
         this.setState((prev)=>({
-            expression: prev.expression + newKey
+            expression: prev.expression == '0' ? newKey : prev.expression + newKey
         }));
     }
 
@@ -66,24 +66,84 @@ export default class ResultScreenComponent extends React.Component {
         let buttons = [];
         return (
             <div>
-                <OutputScreen expression={this.state.expression}/>
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="1" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="2" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="3" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="4" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="5" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="6" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="7" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="8" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="9" />
-                <ButtonsComponent onKeyPress={this.onKeyPress} text="0" />
-                <MultiplicationComponent onKeyPress={this.onKeyPress} />
-                <DivisionComponent onKeyPress={this.onKeyPress} />
-                <AdditionComponent onKeyPress={this.onKeyPress} />
-                <SubtractionComponent onKeyPress={this.onKeyPress} />
-                <BackspaceComponent onBackspacePress={this.onBackspacePress} />
-                <ComputeComponent onComputePress={this.onComputePress} />
-                <ClearComponent onClearPress={this.onClearPress} />
+                <nav style={{marginBottom:'10px'}} class="navbar navbar-expand-sm bg-light navbar-light">
+                    <a style={{fontSize:'30px', fontWeight:'300', fontFamily:'digital-7'}} class="navbar-brand" href="#">ReactJS - Calculator</a>
+                </nav>
+                <div className="container">
+                    <div className="row">
+                        <div className="mx-auto col-md-4 no-x-padding">  
+                            <div className="row">
+                                <div className="col-md-12 no-x-padding">
+                                    <OutputScreen expression={this.state.expression}/>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 no-x-padding">
+                                    <ClearComponent onClearPress={this.onClearPress} />
+                                </div>
+                                <div className="col-md-6 no-x-padding">
+                                    <BackspaceComponent onBackspacePress={this.onBackspacePress} />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="1" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="2" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="3" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <MultiplicationComponent onKeyPress={this.onKeyPress} />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="4" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="5" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="6" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <DivisionComponent onKeyPress={this.onKeyPress} />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="7" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="8" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="9" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <AdditionComponent onKeyPress={this.onKeyPress} />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="." />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ButtonsComponent onKeyPress={this.onKeyPress} text="0" />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <ComputeComponent onComputePress={this.onComputePress} />
+                                </div>
+                                <div className="col-md-3 no-x-padding">
+                                    <SubtractionComponent onKeyPress={this.onKeyPress} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     } 
