@@ -10,7 +10,7 @@ import AdditionComponent from './arithmetic/AdditionComponent'
 import SubtractionComponent from './arithmetic/SubtractionComponent'
 // For the Output Screen
 function OutputScreen(props){
-    return (<input style={{borderRadius:0, fontSize: '40px', fontWeight: 400}} className="form-control" type="text" value={props.expression} disabled="true" />);
+    return (<input className="form-control outputScreen" type="text" value={props.expression} onKeyPress={props.handleKeyPress} onChange={props.handleChange} />);
 }
 
 export default class ResultScreenComponent extends React.Component {
@@ -23,6 +23,8 @@ export default class ResultScreenComponent extends React.Component {
         this.onBackspacePress = this.onBackspacePress.bind(this);
         this.onComputePress = this.onComputePress.bind(this);
         this.onClearPress = this.onClearPress.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);        
     }
 
     onKeyPress(newKey){
@@ -61,6 +63,18 @@ export default class ResultScreenComponent extends React.Component {
             expression: '0'
         }));
     }
+
+    handleChange(e){
+        if(!e.target.value.match(/[a-z]/i)){
+            this.setState({ expression: e.target.value });
+        }
+    }
+
+    handleKeyPress(e){
+        if (e.key === 'Enter') {
+            this.onComputePress();
+        }
+    }
     
     render(){
         let buttons = [];
@@ -74,7 +88,7 @@ export default class ResultScreenComponent extends React.Component {
                         <div className="mx-auto col-md-4 no-x-padding">  
                             <div className="row">
                                 <div className="col-md-12 no-x-padding">
-                                    <OutputScreen expression={this.state.expression}/>
+                                    <OutputScreen expression={this.state.expression} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress}/>
                                 </div>
                             </div>
                             <div className="row">

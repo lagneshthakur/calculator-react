@@ -37,3 +37,19 @@
     padding-left: 0px;
     padding-right: 0px;
 }
+
+.outputScreen{
+    background-color: #433437;
+    color: white;
+    border-radius: 0;
+    margin-bottom: -1px;
+    border-color: #670912;
+    font-size: 40px;
+    font-weight: 400;
+    text-align: right;
+}
+
+.outputScreen:focus{
+    border-color: #670912;
+    box-shadow: 0 0 0 0.2rem rgba(193, 32, 63, 0.32);
+}
