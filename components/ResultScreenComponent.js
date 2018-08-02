@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ButtonsComponent from './ButtonsComponent'
 import ComputeComponent from './ComputeComponent'
 import BackspaceComponent from './BackspaceComponent'
+import ClearComponent from './ClearComponent'
 import MultiplicationComponent from './arithmetic/MultiplicationComponent'
 import DivisionComponent from './arithmetic/DivisionComponent'
 import AdditionComponent from './arithmetic/AdditionComponent'
@@ -21,6 +22,7 @@ export default class ResultScreenComponent extends React.Component {
         this.onKeyPress = this.onKeyPress.bind(this);
         this.onBackspacePress = this.onBackspacePress.bind(this);
         this.onComputePress = this.onComputePress.bind(this);
+        this.onClearPress = this.onClearPress.bind(this);
     }
 
     onKeyPress(newKey){
@@ -33,15 +35,23 @@ export default class ResultScreenComponent extends React.Component {
     onBackspacePress(){
         console.log("Backspace Pressed");
         this.setState((prev)=>({
-            expression: prev.expression.length <=1 ? '0' : prev.expression.slice(0,-1)
+            expression: prev.expression.length <=1 ? '0' : prev.expression.substring(0,prev.expression.length-1)
         }));
     }
     
     onComputePress(){
         console.log("Compute Pressed");
         debugger
+        let unComputedExpression = this.state.expression;
+        try{
+            eval(unComputedExpression);
+        }
+        catch(e){
+            alert("Invalid Expression!");
+            return;
+        }
         this.setState((prev)=>({
-            expression: eval(prev.expression)
+            expression: eval(prev.expression).toString()
         }));
     }
 
@@ -73,6 +83,7 @@ export default class ResultScreenComponent extends React.Component {
                 <SubtractionComponent onKeyPress={this.onKeyPress} />
                 <BackspaceComponent onBackspacePress={this.onBackspacePress} />
                 <ComputeComponent onComputePress={this.onComputePress} />
+                <ClearComponent onClearPress={this.onClearPress} />
             </div>
         );
     } 
