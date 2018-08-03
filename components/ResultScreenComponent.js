@@ -53,7 +53,7 @@ export default class ResultScreenComponent extends React.Component {
             return;
         }
         this.setState((prev)=>({
-            expression: eval(prev.expression).toString()
+            expression: (Math.round(eval(prev.expression) * Math.pow(10, 10)) / Math.pow(10, 10)).toString()
         }));
     }
 
